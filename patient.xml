@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree view of Patient model -->
+    <record id="patient_tree" model="ir.ui.view">
+        <field name="name">hospital.patient.tree</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <tree string="Patients">
+                <field name="name_seq" />
+                <field name="patient_name" />
+                <field name="patient_age" />
+                <field name="notes" />
+            </tree>
+        </field>
+
+    </record>
+
+    <!-- form view of Patient model -->
+    <record id="patient_form" model="ir.ui.view">
+        <field name="name">hospital.patient.form</field>
+        <field name="model">hospital.patient</field>
+        <field name="arch" type="xml">
+            <form string="Patients">
+                <sheet>
+                <div class="oe_title">
+                    <h1>
+                        <field name="name_seq" readonly="1" />
+                    </h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="patient_name" />
+                    </group>
+                    <group>
+                        <field name="patient_age" />
+                    </group>
+                </group>
+                <group>
+                    <field name="notes" />
+                    <field name="image" />
+                </group>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget='mail_followers'/>
+                    <field name="activity_ids" widget='mail_activity'/>
+                    <field name="message_ids" widget='mail_thread' options="{'post_refresh':'recipients'}"/>
+                </div>               
+            </form>
+        </field>
+    </record>
+
+    <!-- action of the patient menu -->
+    <record id="action_patient" model="ir.actions.act_window">
+        <field name="name">Patients</field>
+        <field name="res_model">hospital.patient</field>
+        <!-- <field name="binding_model_id" ref="model_tab_b"/> -->
+        <field name="binding_view_types"/>
+        <field name="help" type="html">
+             <p class="o_view_nocontent_smiling_face">
+                Create First Patient!
+             </p>
+        </field>
+    </record>
+
+    <menuitem id="hospital_root" name="Hospital" sequence="0" web_icon="vk_hospital.static/description/menu_icon.png"/>
+    <menuitem id="patient" name="Patient" parent="hospital_root" action="action_patient" />
+
+</odoo>
