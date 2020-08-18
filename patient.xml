@@ -78,7 +78,7 @@
     </record>
 
     <!-- search view patient model -->
-    <record id="hosptial_patient_search" model="ir.ui.view">
+    <record id="hospital_patient_search" model="ir.ui.view">
         <field name="name">hospital.patient.search</field>
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
@@ -105,6 +105,7 @@
     <record id="action_patient" model="ir.actions.act_window">
         <field name="name">Patients</field>
         <field name="res_model">hospital.patient</field>
+        <field name="context">{'search_default_male': True}</field>
         <!-- <field name="binding_model_id" ref="model_tab_b"/> -->
         <field name="binding_view_types"/>
         <field name="help" type="html">
