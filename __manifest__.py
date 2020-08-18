@@ -7,7 +7,7 @@
     'author':'vikas kumar',
     'maintainer':'odoo mates',
     'website':'odoomate.com',
-    'depends':["base","sale_management","stock","account","mail"],
+    'depends':["base","sale_management","stock","account","mail","sale"],
     'demo':[],
     'data':[
         'patient.xml',
