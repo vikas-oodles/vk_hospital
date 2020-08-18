@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- place patient_name in sale.order table -->
+<!--    <record id="sale_order_inherit" model="ir.ui.view">-->
+<!--        <field name="name">sale.order.inherit</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="sale.view_order_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <field name="partner_id" position="after">-->
+<!--                <field name="patient_name" />-->
+<!--            </field>-->
+<!--        </field>-->
+
+<!--    </record>-->
+
+
+    <!-- Tree view of Appointment model -->
+    <record id="appointment_tree" model="ir.ui.view">
+        <field name="name">hospital.appointment.tree</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <tree string="Appointment">
+                <field name="name" />
+                <field name="patient_id" />
+                <field name="patient_age" />
+                <field name="notes" />
+                <field name="appointment_date" />
+            </tree>
+        </field>
+
+    </record>
+
+    <!-- form view of Patient model -->
+    <record id="appointment_form" model="ir.ui.view">
+        <field name="name">hospital.appointment.form</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <form string="Appointments">
+                <sheet>
+                <div class="oe_title">
+                    <h1>
+                        <field name="name" readonly="1" />
+                    </h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="patient_id" />
+                    </group>
+                    <group>
+                        <field name="patient_age" />
+                    </group>
+                </group>
+                <group>
+                    <field name="notes" />
+                </group>
+                <group>
+                    <field name="appointment_date" />
+                </group>
+
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget='mail_followers'/>
+                    <field name="activity_ids" widget='mail_activity'/>
+                    <field name="message_ids" widget='mail_thread' options="{'post_refresh':'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- search view patient model -->
+<!--    <record id="hospital_appointment_search" model="ir.ui.view">-->
+<!--        <field name="name">hospital.appointment.search</field>-->
+<!--        <field name="model">hospital.appointment</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <search string="Search Appointment">-->
+<!--                <field name="patient_name" filter_domain="['|',('patient_name','ilike',self),('name_seq','ilike',self)]" />-->
+<!--                <field name="name_seq" />-->
+<!--                &lt;!&ndash; <field name="patient_name" /> &ndash;&gt;-->
+<!--                <separator/>-->
+<!--                <filter string='Male' name='male' domain="[('gender', '=', 'male')]" />-->
+<!--                <filter string='Female' name='female' domain="[('gender', '=', 'fe_male')]" />-->
+<!--                <group expand="0" string="Group By">-->
+<!--                    <filter string="Gender" name="gender" context="{'group_by':'gender'}" />-->
+<!--                </group>-->
+<!--                &lt;!&ndash; <field name="name_seq" />-->
+<!--                <field name="patient_name" />-->
+<!--                <field name="patient_age" />-->
+<!--                <field name="notes" /> &ndash;&gt;-->
+<!--            </search>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+    <!-- action of the appointment menu -->
+    <record id="action_appointment" model="ir.actions.act_window">
+        <field name="name">Appointment</field>
+        <field name="res_model">hospital.appointment</field>
+        <field name="context">{'search_default_name': True}</field>
+        <!-- <field name="binding_model_id" ref="model_tab_b"/> -->
+        <field name="binding_view_types"/>
+        <field name="help" type="html">
+             <p class="o_view_nocontent_smiling_face">
+                Create First Appointment!
+             </p>
+        </field>
+    </record>
+
+    <menuitem id="hospital_root" name="Hospital" sequence="0" web_icon="vk_hospital.static/description/menu_icon.png"/>
+    <menuitem id="appointment" name="Appointment" parent="hospital_root" action="action_appointment" />
+
+
+</odoo>
