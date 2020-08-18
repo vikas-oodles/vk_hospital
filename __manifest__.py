@@ -10,7 +10,7 @@
     'depends':["base","sale_management","stock","account","mail","sale"],
     'demo':[],
     'data':[
-        'patient.xml',
+        'views/patient.xml',
         'security/ir.model.access.csv',
         'data/sequence.xml',
         
