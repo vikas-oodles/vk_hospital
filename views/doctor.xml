@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree view of Doctor model -->
+    <record id="doctor_tree" model="ir.ui.view">
+        <field name="name">hospital.doctor.tree</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <tree string="Doctor">
+                <field name="doctor_name" />
+                <field name="doctor_age" />
+                <field name="doctor_speciality" />
+                <field name="doctor_charge" />
+                <field name="gender" />
+                <field name="doctor_address" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- form view of Doctor model -->
+    <record id="doctor_form" model="ir.ui.view">
+        <field name="name">hospital.doctor.form</field>
+        <field name="model">hospital.doctor</field>
+        <field name="arch" type="xml">
+            <form string="Doctor">
+                <sheet>
+                    <group>
+                        <field name="doctor_name" />
+                    </group>
+                    <group>
+                        <field name="doctor_image" />
+                    </group>
+                    <group>
+                        <group>
+                            <field name="doctor_age" />
+                            <field name="doctor_charge" />
+                        </group>
+                        <group>
+                            <field name="gender" />
+                            <field name="doctor_speciality"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="doctor_address" />
+                    </group>
+
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget='mail_followers'/>
+                    <field name="activity_ids" widget='mail_activity'/>
+                    <field name="message_ids" widget='mail_thread' options="{'post_refresh':'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- action of the appointment menu -->
+    <record id="action_doctor" model="ir.actions.act_window">
+        <field name="name">Doctor</field>
+        <field name="res_model">hospital.doctor</field>
+<!--        <field name="context">{'search_default_name': True}</field>-->
+        <!-- <field name="binding_model_id" ref="model_tab_b"/> -->
+        <field name="binding_view_types"/>
+        <field name="help" type="html">
+             <p class="o_view_nocontent_smiling_face">
+                Create First Doctor Record!
+             </p>
+        </field>
+    </record>
+
+    <menuitem id="hospital_root" name="Hospital" sequence="0" web_icon="vk_hospital.static/description/menu_icon.png"/>
+    <menuitem id="doctor" name="Doctor" parent="hospital_root" action="action_doctor" />
+
+
+</odoo>
