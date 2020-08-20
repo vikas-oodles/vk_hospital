@@ -12,8 +12,13 @@
     'data':[
         'views/patient.xml',
         'views/appointment.xml',
+        'views/doctor.xml',
+        'views/inpatient.xml',
+        'views/room.xml',
+        'views/bill.xml',
         'security/ir.model.access.csv',
         'data/sequence.xml',
+
         
     ],
     'installable': True,

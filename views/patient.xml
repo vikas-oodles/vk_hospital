@@ -58,6 +58,9 @@
                     <group>
                         <field name="age_group" />
                     </group>
+                    <group>
+                        <field name="disease" />
+                    </group>
                     
                     
                 </group>

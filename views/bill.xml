@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree view of inpatient model -->
+    <record id="doctor_tree" model="ir.ui.view">
+        <field name="name">hospital.bill.tree</field>
+        <field name="model">hospital.bill</field>
+        <field name="arch" type="xml">
+            <tree string="Doctor">
+                <field name="bill_id" />
+                <field name="patient_id" />
+                <field name="doctor_fee"/>
+                <field name="room_charge" />
+<!--                <field name="admission_date" />-->
+            </tree>
+        </field>
+
+    </record>
+
+<!--     form view of inpatient model -->
+    <record id="bill_form" model="ir.ui.view">
+        <field name="name">hospital.bill.form</field>
+        <field name="model">hospital.bill</field>
+        <field name="arch" type="xml">
+            <form string="Bill">
+                <sheet>
+                    <group>
+                        <field name="bill_id" />
+
+                    </group>
+                    <group>
+
+                        <group>
+                            <field name="patient_id" />
+                            <field name="doctor_id" />
+                        </group>
+                        <group>
+                            <field name="doctor_fee" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="room_charge" />
+                    </group>
+
+
+
+
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget='mail_followers'/>
+                    <field name="activity_ids" widget='mail_activity'/>
+                    <field name="message_ids" widget='mail_thread' options="{'post_refresh':'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- action of the inpatient menu -->
+    <record id="action_bill" model="ir.actions.act_window">
+        <field name="name">Bill</field>
+        <field name="res_model">hospital.bill</field>
+<!--        <field name="context">{'search_default_name': True}</field>-->
+        <!-- <field name="binding_model_id" ref="model_tab_b"/> -->
+        <field name="binding_view_types"/>
+        <field name="help" type="html">
+             <p class="o_view_nocontent_smiling_face">
+                Create First Bill!
+             </p>
+        </field>
+    </record>
+
+    <menuitem id="hospital_root" name="Hospital" sequence="0" web_icon="vk_hospital.static/description/menu_icon.png"/>
+    <menuitem id="bill" name="Bill" parent="hospital_root" action="action_bill" />
+
+
+</odoo>

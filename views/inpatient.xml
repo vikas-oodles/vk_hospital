@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree view of inpatient model -->
+    <record id="doctor_tree" model="ir.ui.view">
+        <field name="name">hospital.inpatient.tree</field>
+        <field name="model">hospital.inpatient</field>
+        <field name="arch" type="xml">
+            <tree string="Doctor">
+                <field name="patient_id" />
+                <field name="doctor_id" />
+                <field name="fee"/>
+                <field name="room_id" />
+                <field name="admission_date" />
+            </tree>
+        </field>
+
+    </record>
+
+<!--     form view of inpatient model -->
+    <record id="inpatient_form" model="ir.ui.view">
+        <field name="name">hospital.inpatient.form</field>
+        <field name="model">hospital.inpatient</field>
+        <field name="arch" type="xml">
+            <form string="Inpatient">
+                <sheet>
+                    <group>
+                        <field name="patient_id" />
+
+                    </group>
+                    <group>
+
+                        <group>
+                            <field name="doctor_id" />
+                            <field name="fee" />
+                        </group>
+                    </group>
+                    <group>
+                        <field name="room_id" />
+                    </group>
+                    <group>
+                        <field name="admission_date" />
+                    </group>
+
+
+
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget='mail_followers'/>
+                    <field name="activity_ids" widget='mail_activity'/>
+                    <field name="message_ids" widget='mail_thread' options="{'post_refresh':'recipients'}"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- action of the inpatient menu -->
+    <record id="action_inpatient" model="ir.actions.act_window">
+        <field name="name">Inpatient</field>
+        <field name="res_model">hospital.inpatient</field>
+        <field name="context">{'search_default_name': True}</field>
+        <!-- <field name="binding_model_id" ref="model_tab_b"/> -->
+        <field name="binding_view_types"/>
+        <field name="help" type="html">
+             <p class="o_view_nocontent_smiling_face">
+                Create First Inpatient Record!
+             </p>
+        </field>
+    </record>
+
+    <menuitem id="hospital_root" name="Hospital" sequence="0" web_icon="vk_hospital.static/description/menu_icon.png"/>
+    <menuitem id="inpatient" name="Inpatient" parent="hospital_root" action="action_inpatient" />
+
+
+</odoo>
