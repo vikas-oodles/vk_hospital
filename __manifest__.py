@@ -16,6 +16,7 @@
         'views/inpatient.xml',
         'views/room.xml',
         'views/bill.xml',
+        'views/disease.xml',
         'security/ir.model.access.csv',
         'data/sequence.xml',
 

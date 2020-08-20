@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+<!--    for tree view of the disease menu-->
+    <record id="disease_tree" model="ir.ui.view">
+        <field name="name">hospital.disease.tree</field>
+        <field name="model">hospital.disease</field>
+        <field name="arch" type="xml">
+            <tree string="Disease">
+                <field name="disease_name" />
+                <field name="disease_severity" />
+            </tree>
+        </field>
+
+    </record>
+
+<!--    for form view of the disease menu-->
+    <record id="disease_form" model="ir.ui.view">
+        <field name="name">hospital.disease.form</field>
+        <field name="model">hospital.disease</field>
+        <field name="arch" type="xml">
+            <form string="Disease">
+                <sheet>
+                    <group>
+                        <field name="disease_name"/>
+                        <field name="disease_severity"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+
+    </record>
+
+<!--    for action of the disease menu-->
+    <record id="action_disease" model="ir.actions.act_window">
+        <field name="name">Disease</field>
+        <field name="res_model">hospital.disease</field>
+        <field name="binding_view_types"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create First Disease Record!
+            </p>
+        </field>
+
+    </record>
+
+    <menuitem id="hospital_root" name="Hospital" sequence="0" web_icon="vk_hospital.static/description/menu_icon.png"/>
+    <menuitem id="disease" name="Disease" parent="hospital_root" action="action_disease" />
+
+</odoo>

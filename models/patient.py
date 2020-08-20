@@ -12,8 +12,8 @@ class HospitalPatient(models.Model):
     _name = 'hospital.patient'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Patient Record'
-    _rec_name = 'patient_name'
     _order = "id desc"
+    _rec_name = 'patient_name'
 
     @api.constrains('patient_age')
     def check_age(self):
@@ -36,7 +36,7 @@ class HospitalPatient(models.Model):
         ('major', 'Major'),
         ('minor', 'Minor'),
     ], default='major', string="Age Group", compute='set_age_group')
-    disease = fields.Char(string="Disease", required=True, copy=True, default="Seasonal Flu")
+    disease = fields.One2many('hospital.disease', 'patient_id', string='Disease Name')
 
     @api.depends('patient_age')
     def set_age_group(self):

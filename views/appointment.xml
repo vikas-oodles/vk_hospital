@@ -32,6 +32,33 @@
 
     </record>
 
+    <!-- Calendar view of Appointment model -->
+    <record id="appointment_calendar" model="ir.ui.view">
+        <field name="name">hospital.appointment.calendar</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <calendar string="Appointment Calendar" date_start = "appointment_date" date_stop = "appointment_end" color="patient_id">
+                <field name="patient_id"/>
+            </calendar>
+        </field>
+
+    </record>
+
+
+    <!-- Pivot view of Appointment model -->
+    <record id="appointment_pivot" model="ir.ui.view">
+        <field name="name">hospital.appointment.pivot</field>
+        <field name="model">hospital.appointment</field>
+        <field name="arch" type="xml">
+            <pivot string="Appointment Pivot">
+                <field name="doctor_name"/>
+                <field name="appointment_date"/>
+            </pivot>
+        </field>
+
+    </record>
+
+
     <!-- form view of Patient model -->
     <record id="appointment_form" model="ir.ui.view">
         <field name="name">hospital.appointment.form</field>
@@ -110,10 +137,15 @@
     <!-- action of the appointment menu -->
     <record id="action_appointment" model="ir.actions.act_window">
         <field name="name">Appointment</field>
+        <!-- <field name="type">ir.actions.act_window</field> -->
         <field name="res_model">hospital.appointment</field>
-        <field name="context">{'search_default_name': True}</field>
+        <!-- <field name="context">{'search_default_name': True}</field> -->
+        <!-- <field name="view_type">form</field> -->
+        <field name="view_mode">tree,form,calendar,kanban,pivot,graph</field>
+        <!-- <field name="context">{}</field> -->
+
         <!-- <field name="binding_model_id" ref="model_tab_b"/> -->
-        <field name="binding_view_types"/>
+        <!-- <field name="binding_view_types"/> -->
         <field name="help" type="html">
              <p class="o_view_nocontent_smiling_face">
                 Create First Appointment!

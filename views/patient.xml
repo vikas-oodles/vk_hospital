@@ -19,13 +19,13 @@
         <field name="name">hospital.patient.tree</field>
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
-            <tree string="Patients">
+            <tree string="Patients" editable="bottom">
                 <field name="name_seq" />
                 <field name="patient_name" />
                 <field name="patient_age" />
                 <field name="age_group" />
                 <field name="gender" />
-                <field name="notes" />
+                <field name="disease" />
             </tree>
         </field>
 
@@ -41,6 +41,7 @@
                 <div class="oe_title">
                     <h1>
                         <field name="name_seq" readonly="1" />
+                        <field name="image" widget="image" class="oe_avatar"/>
                     </h1>
                 </div>
                 <group>
@@ -58,16 +59,24 @@
                     <group>
                         <field name="age_group" />
                     </group>
-                    <group>
-                        <field name="disease" />
-                    </group>
-                    
-                    
                 </group>
+
                 <group>
                     <field name="notes" />
-                    <field name="image" />
                 </group>
+                <notebook>
+                     <page string="Disease">
+                         <field name="disease">
+                             <tree>
+                                <field name="disease_name"/>
+                                <field name="disease_severity"/>
+                                <field name="patient_id" invisible="1"/>
+
+
+                             </tree>
+                         </field>
+                     </page>
+                 </notebook>
                     
                 </sheet>
 
@@ -110,7 +119,8 @@
         <field name="res_model">hospital.patient</field>
         <field name="context">{'search_default_male': True}</field>
         <!-- <field name="binding_model_id" ref="model_tab_b"/> -->
-        <field name="binding_view_types"/>
+<!--        <field name="binding_view_types"/>-->
+        <field name="view_mode">tree,form</field>
         <field name="help" type="html">
              <p class="o_view_nocontent_smiling_face">
                 Create First Patient!

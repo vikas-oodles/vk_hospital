@@ -10,6 +10,7 @@
                 <field name="patient_id" />
                 <field name="doctor_fee"/>
                 <field name="room_charge" />
+                <field name="total" />
 <!--                <field name="admission_date" />-->
             </tree>
         </field>
@@ -39,6 +40,9 @@
                     </group>
                     <group>
                         <field name="room_charge" />
+                    </group>
+                    <group>
+                        <field name="total" readonly="1" />
                     </group>
 
 

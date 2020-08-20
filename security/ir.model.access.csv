@@ -5,3 +5,4 @@ access_hospital_doctor,access.hospital.doctor,model_hospital_doctor,,1,1,1,1
 access_hospital_inpatient,access.hospital.inpatient,model_hospital_inpatient,,1,1,1,1
 access_hospital_room,access.hospital.room,model_hospital_room,,1,1,1,1
 access_hospital_bill,access.hospital.bill,model_hospital_bill,,1,1,1,1
+access_hospital_disease,access.hospital.disease,model_hospital_disease,,1,1,1,1
