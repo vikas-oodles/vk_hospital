@@ -91,7 +91,8 @@
                 </group>
                 <group>
                     <group>
-                        <field name="doctor_name" />
+<!--                        to prevent click, create and edit manytoone field-->
+                        <field name="doctor_name" options="{'no_create_edit':True,'no_create':True, 'no_open':True}" />
                     </group>
                     <group>
                         <field name="urgency_level" />
@@ -155,6 +156,7 @@
 
     <menuitem id="hospital_root" name="Hospital" sequence="0" web_icon="vk_hospital.static/description/menu_icon.png"/>
     <menuitem id="appointment" name="Appointment" parent="hospital_root" action="action_appointment" />
+    <menuitem id="create_appointment" name="Create Appointment" parent="hospital_root" action="create_appointment_wizard" />
 
 
 </odoo>

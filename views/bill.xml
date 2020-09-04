@@ -9,7 +9,7 @@
                 <field name="bill_id" />
                 <field name="patient_id" />
                 <field name="doctor_fee"/>
-                <field name="room_charge" />
+                <field name="room_charge" avg="Average of charges" />
                 <field name="total" />
 <!--                <field name="admission_date" />-->
             </tree>
