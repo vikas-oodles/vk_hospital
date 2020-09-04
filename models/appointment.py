@@ -29,4 +29,11 @@ class HospitalAppointment(models.Model):
             vals['name_seq'] = self.env['ir.sequence'].next_by_code('hospital.appointment.sequence') or _('New')
 
         result = super(HospitalAppointment, self).create(vals)
+        for rec in self:
+            # odoo search method
+            patients = rec.env['hospital.patient'].search([])
+            print("patients...", patients)
         return result
+
+
+

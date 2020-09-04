@@ -6,14 +6,20 @@ class SaleOrderInherit(models.Model):
     _inherit = 'sale.order'
 
     patient_name = fields.Char(string='Patient Name')
+    @api.model
+    def create(self,vals_list):
+        res = super(SaleOrderInherit, self).create(vals_list)
+        print("This is method override")
+        return res
+
 
 
 class HospitalPatient(models.Model):
     _name = 'hospital.patient'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Patient Record'
-    _rec_name = 'patient_name'
     _order = "id desc"
+    _rec_name = 'patient_name'
 
     @api.constrains('patient_age')
     def check_age(self):
@@ -36,7 +42,19 @@ class HospitalPatient(models.Model):
         ('major', 'Major'),
         ('minor', 'Minor'),
     ], default='major', string="Age Group", compute='set_age_group')
-    disease = fields.Char(string="Disease", required=True, copy=True, default="Seasonal Flu")
+    disease = fields.One2many('hospital.disease', 'patient_id', string='Disease Name')
+    active = fields.Boolean('Active', default=True)
+
+    def open_patient_appointments(self):
+        return {
+            'name': _('Appointments'),
+            'domain': [('patient_id', '=', self.id)],
+            'view_type': 'form',
+            'res_model': 'hospital.appointment',
+            'view_id': False,
+            'view_mode': 'tree,form',
+            'type': 'ir.actions.act_window',
+        }
 
     @api.depends('patient_age')
     def set_age_group(self):

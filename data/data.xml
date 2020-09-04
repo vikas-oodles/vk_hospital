@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="patient_xyz" model="hospital.patient">
+            <field name="patient_name">XYZ</field>
+            <field name="patient_age">55</field>
+            <field name="gender">male</field>
+
+        </record>
+    </data>
+    <data noupdate="1">
+
+        <record id="doctor_xyz" model="hospital.doctor">
+            <field name="doctor_name">Madhusudar</field>
+            <field name="doctor_age">55</field>
+            <field name="gender">male</field>
+            <field name="doctor_speciality">surgeon</field>
+
+        </record>
+    </data>
+
+    <data noupdate="1">
+
+        <record id="appointment_xyz" model="hospital.appointment">
+
+            <field name="doctor_name" ref="doctor_xyz"/>
+            <field name="patient_id" ref="patient_xyz"/>
+            <field name="patient_age">55</field>
+            <field name="appointment_date">2020-11-5</field>
+
+
+        </record>
+    </data>
+
+</odoo>

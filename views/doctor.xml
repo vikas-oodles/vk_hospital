@@ -12,6 +12,7 @@
                 <field name="doctor_charge" />
                 <field name="gender" />
                 <field name="doctor_address" />
+
             </tree>
         </field>
     </record>
@@ -27,7 +28,7 @@
                         <field name="doctor_name" />
                     </group>
                     <group>
-                        <field name="doctor_image" />
+                        <field name="doctor_image" widget="image" class="oe_avatar"/>
                     </group>
                     <group>
                         <group>
@@ -54,7 +55,7 @@
         </field>
     </record>
 
-    <!-- action of the appointment menu -->
+    <!-- action of the doctor menu -->
     <record id="action_doctor" model="ir.actions.act_window">
         <field name="name">Doctor</field>
         <field name="res_model">hospital.doctor</field>

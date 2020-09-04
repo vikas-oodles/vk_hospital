@@ -19,16 +19,23 @@
         <field name="name">hospital.patient.tree</field>
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
-            <tree string="Patients">
+            <tree string="Patients" editable="bottom">
                 <field name="name_seq" />
                 <field name="patient_name" />
                 <field name="patient_age" />
                 <field name="age_group" />
                 <field name="gender" />
-                <field name="notes" />
+                <field name="disease" />
             </tree>
         </field>
+    </record>
 
+    <record model="ir.actions.act_window" id="open_patient_action_appointments">
+        <field name="name">Appointments</field>
+        <field name="res_model">hospital.appointment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('patient_id','=',active_id)]</field>
+        <field name="context">{}</field>
     </record>
 
     <!-- form view of Patient model -->
@@ -37,10 +44,30 @@
         <field name="model">hospital.patient</field>
         <field name="arch" type="xml">
             <form string="Patients">
+                <header>
+                    <button name="%(create_appointment_wizard)d" string='Create Appointment' type="action" class="oe_highlight"/>
+                </header>
                 <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="open_patient_appointments"
+                        type="object" class="oe_stat_button" icon="fa-calendar">
+                            <field name="id" string="Appointments" widget="statinfo"/>
+                        </button>
+
+                        <button name="%(open_patient_action_appointments)d"
+                        type="action" class="oe_stat_button" icon="fa-usd">
+                            <field name="id" string="Appointments" widget="statinfo"/>
+                        </button>
+
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options="{&quot;terminology&quot;:&quot;archive&quot;}"/>
+                        </button>
+                    </div>
+
                 <div class="oe_title">
                     <h1>
                         <field name="name_seq" readonly="1" />
+                        <field name="image" widget="image" class="oe_avatar"/>
                     </h1>
                 </div>
                 <group>
@@ -58,16 +85,24 @@
                     <group>
                         <field name="age_group" />
                     </group>
-                    <group>
-                        <field name="disease" />
-                    </group>
-                    
-                    
                 </group>
+
                 <group>
                     <field name="notes" />
-                    <field name="image" />
                 </group>
+                <notebook>
+                     <page string="Disease">
+                         <field name="disease">
+                             <tree>
+                                <field name="disease_name"/>
+                                <field name="disease_severity"/>
+                                <field name="patient_id" invisible="1"/>
+
+
+                             </tree>
+                         </field>
+                     </page>
+                 </notebook>
                     
                 </sheet>
 
@@ -110,7 +145,8 @@
         <field name="res_model">hospital.patient</field>
         <field name="context">{'search_default_male': True}</field>
         <!-- <field name="binding_model_id" ref="model_tab_b"/> -->
-        <field name="binding_view_types"/>
+<!--        <field name="binding_view_types"/>-->
+        <field name="view_mode">tree,form</field>
         <field name="help" type="html">
              <p class="o_view_nocontent_smiling_face">
                 Create First Patient!
